@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Echo workflow version
         run: |
-          echo "workflow: v1"
+          echo "workflow: v2"
 
       - name: Show resolution context
         run: |
