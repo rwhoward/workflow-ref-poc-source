@@ -1,0 +1,29 @@
+name: Reusable Workflow
+on:
+  workflow_call:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo workflow version
+        run: |
+          echo "workflow: v1"
+
+      - name: Show resolution context
+        run: |
+          echo "job.workflow_repository=${{ job.workflow_repository }}"
+          echo "job.workflow_sha=${{ job.workflow_sha }}"
+          echo "job.workflow_ref=${{ job.workflow_ref }}"
+          echo "github.workflow_sha=${{ github.workflow_sha }}"
+          echo "github.workflow_ref=${{ github.workflow_ref }}"
+
+      - name: Check out workflow repo at job.workflow_sha
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: workflow-repo
+
+      - name: Run co-located action
+        uses: ./workflow-repo/.github/actions/echo-version

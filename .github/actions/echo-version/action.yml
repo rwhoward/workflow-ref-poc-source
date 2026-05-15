@@ -1,0 +1,8 @@
+name: Echo Version
+description: Echoes the version of the action from the workflow repo
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        echo "action: v1"
