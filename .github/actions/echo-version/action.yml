@@ -5,4 +5,4 @@ runs:
   steps:
     - shell: bash
       run: |
-        echo "action: v2"
+        echo "action: v3"
